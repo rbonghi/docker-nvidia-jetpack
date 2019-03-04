@@ -1,0 +1,14 @@
+version: '3'
+services:
+  jetpack:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+    command: ["$uid", "$gid"]
+    container_name: jetpack
+    environment:
+      - DISPLAY=$DISPLAY
+    volumes:
+      - ./:/code
+      - $XSOCK:$XSOCK:rw
+      - $XAUTH:$XAUTH:rw
