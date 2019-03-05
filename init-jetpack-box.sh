@@ -36,15 +36,15 @@ xauth nlist $DISPLAY | sed -e 's/^..../ffff/' | xauth -f $XAUTH nmerge -
 
 sudo docker run \
         -e DISPLAY=$DISPLAY \
+        -e HOST_USER_ID=${uid} \
+        -e HOST_USER_GID=${gid} \
         --volume=$XSOCK:$XSOCK:rw \
         --volume=$XAUTH:$XAUTH:rw \
-        --volume=$script_dir:/code:rw \
+        --volume=$script_dir:/jetpack:rw \
         --env="XAUTHORITY=${XAUTH}" \
         --device=/dev/dri/card0:/dev/dri/card0 \
         --name "${container_name}" \
         --rm \
-        -it ${image_tag} ${uid} ${gid}
+        -it ${image_tag}
 
-#sudo docker ps -aqf "name=${container_name}" > "${target}/docker_id"
-#chmod 444 "${target}/docker_id"
 
