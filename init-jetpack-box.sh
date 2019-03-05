@@ -26,14 +26,8 @@ user_name="jetpack"
 
 # Build the docker image
 echo "Build the docker image... (This can take some time)"
-#cd "${script_dir}/docker"
-#sudo docker build \
-#	--build-arg jetpack_file="${jetpack_file}" \
-#        --build-arg uid="${uid}" \
-#        --build-arg gid="${gid}" \
-#	-t ${image_tag} \
-#	docker
-docker build -t ${image_tag} docker
+docker build \
+    -t ${image_tag} docker
 
 XSOCK=/tmp/.X11-unix
 XAUTH=/tmp/.docker.xauth
@@ -49,7 +43,7 @@ sudo docker run \
         --device=/dev/dri/card0:/dev/dri/card0 \
         --name "${container_name}" \
         --rm \
-        -it ${image_tag}
+        -it ${image_tag} ${uid} ${gid}
 
 #sudo docker ps -aqf "name=${container_name}" > "${target}/docker_id"
 #chmod 444 "${target}/docker_id"
