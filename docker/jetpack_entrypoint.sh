@@ -4,7 +4,6 @@ set -e
 
 uid=$HOST_USER_ID
 gid=$HOST_USER_GID
-jetpack_file="jetpack.run"
 
 # https://unix.stackexchange.com/questions/230238/starting-x-applications-from-the-terminal-and-the-warnings-that-follow
 export NO_AT_BRIDGE=1
@@ -20,5 +19,5 @@ cd /jetpack
 bash
 
 # Run Jetpack
-#chmod +x ${jetpack_file}
-#su jetpack ./${jetpack_file} --verbose
+#chmod +x ${JETPACK_FILE}
+#su jetpack ./${JETPACK_FILE} --verbose

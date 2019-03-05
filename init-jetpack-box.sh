@@ -38,6 +38,7 @@ sudo docker run \
         -e DISPLAY=$DISPLAY \
         -e HOST_USER_ID=${uid} \
         -e HOST_USER_GID=${gid} \
+        -e JETPACK_FILE=${jetpack_file} \
         --volume=$XSOCK:$XSOCK:rw \
         --volume=$XAUTH:$XAUTH:rw \
         --volume=$script_dir:/jetpack:rw \
