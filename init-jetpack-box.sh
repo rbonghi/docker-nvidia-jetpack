@@ -38,7 +38,7 @@ docker build -t ${image_tag} docker
 XSOCK=/tmp/.X11-unix
 XAUTH=/tmp/.docker.xauth
 sudo touch $XAUTH
-sudo xauth nlist $DISPLAY | sed -e 's/^..../ffff/' | xauth -f $XAUTH nmerge -
+xauth nlist $DISPLAY | sed -e 's/^..../ffff/' | xauth -f $XAUTH nmerge -
 
 sudo docker run \
         -e DISPLAY=$DISPLAY \
@@ -49,7 +49,7 @@ sudo docker run \
         --device=/dev/dri/card0:/dev/dri/card0 \
         --name "${container_name}" \
         --rm \
-        -it ${image_tag} bash
+        -it ${image_tag}
 
 #sudo docker ps -aqf "name=${container_name}" > "${target}/docker_id"
 #chmod 444 "${target}/docker_id"
